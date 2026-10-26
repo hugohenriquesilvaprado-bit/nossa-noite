@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14060b">
+<meta name="robots" content="noindex, nofollow">
+<title>Debora &amp; Hugo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#14060b; --bg2:#22091a; --card:#2a0d1c; --line:#4a1a30;
+  --text:#fbe9ef; --muted:#c79aab; --rose:#ff3d6e; --wine:#a3123f;
+  --gold:#f2b880; --glow:rgba(255,61,110,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:Inter,system-ui,sans-serif;color:var(--text);
+  background:radial-gradient(120% 80% at 50% 0%,#3b0c24 0%,var(--bg) 60%) fixed,var(--bg);
+  min-height:100dvh;overflow-x:hidden}
+.bg-art{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5}
+.float{position:fixed;pointer-events:none;z-index:0;opacity:.16;animation:rise linear infinite}
+@keyframes rise{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-20vh) rotate(40deg)}}
+main{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:22px 16px calc(32px + env(safe-area-inset-bottom));min-height:100dvh;display:flex;flex-direction:column}
+.screen{display:none;flex:1;flex-direction:column}
+.screen.on{display:flex;animation:fade .5s ease}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* intro */
+.intro{justify-content:center;text-align:center}
+.hero svg{width:110px;height:110px;filter:drop-shadow(0 0 22px var(--glow));animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.07)}}
+.kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:22px 0 10px}
+h1{font-family:"Playfair Display",serif;font-style:italic;font-weight:700;font-size:46px;line-height:1.02;
+  background:linear-gradient(90deg,var(--gold),var(--rose),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);font-size:16px;line-height:1.55;margin:18px auto 30px;max-width:340px}
+.lead b{color:var(--text);font-weight:600}
+
+/* topo */
+.top{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.iconbtn{flex:0 0 42px;background:var(--card);border:1px solid var(--line);color:var(--text);height:42px;border-radius:12px;display:grid;place-items:center;cursor:pointer}
+.iconbtn svg{width:20px;height:20px}
+.iconbtn.hide{visibility:hidden}
+.prog{flex:1;display:flex;gap:6px}
+.prog i{flex:1;height:5px;border-radius:3px;background:var(--line);transition:background .4s}
+.prog i.f{background:linear-gradient(90deg,var(--rose),var(--gold))}
+
+.qnum{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+h2{font-family:"Playfair Display";font-style:italic;font-weight:600;font-size:32px;line-height:1.15;margin-bottom:6px}
+.qsub{color:var(--muted);font-size:14.5px;line-height:1.45;margin-bottom:22px}
+
+.opt{display:flex;gap:14px;align-items:center;width:100%;text-align:left;cursor:pointer;
+  background:linear-gradient(135deg,var(--card),var(--bg2));border:1.5px solid var(--line);border-radius:22px;padding:16px;margin-bottom:12px;color:var(--text);font:inherit;
+  transition:transform .15s,border-color .2s,box-shadow .25s,background .25s;position:relative;overflow:hidden;
+  opacity:0;animation:fade .45s ease forwards}
+.opt:nth-child(2){animation-delay:.08s}.opt:nth-child(3){animation-delay:.16s}
+.opt:active{transform:scale(.98)}
+.opt .ic{flex:0 0 60px;height:60px;border-radius:18px;display:grid;place-items:center;background:rgba(255,61,110,.12)}
+.opt .ic svg{width:38px;height:38px}
+.opt h3{font-family:"Playfair Display";font-style:italic;font-size:20px;font-weight:600;line-height:1.2}
+.opt p{color:var(--muted);font-size:13px;margin-top:4px;line-height:1.4}
+.opt .chk{margin-left:auto;flex:0 0 26px;height:26px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;transition:.25s}
+.opt .chk svg{width:14px;height:14px;opacity:0}
+.opt.sel{border-color:var(--rose);background:linear-gradient(135deg,#4a1030,#2a0a1a);box-shadow:0 0 0 4px rgba(255,61,110,.15),0 10px 30px rgba(255,61,110,.25)}
+.opt.sel .chk{background:var(--rose);border-color:var(--rose)}
+.opt.sel .chk svg{opacity:1}
+
+.only{text-align:center;background:linear-gradient(160deg,#3a0f25,#1c0712);border:1px solid var(--line);border-radius:28px;padding:30px 22px;margin-bottom:16px}
+.only svg{width:80px;height:80px;filter:drop-shadow(0 0 16px var(--glow))}
+.only h3{font-family:"Playfair Display";font-style:italic;font-size:25px;margin:14px 0 8px}
+.only p{color:var(--muted);line-height:1.5}
+
+.btn{border:0;border-radius:16px;padding:17px;font:inherit;font-weight:600;font-size:16px;cursor:pointer;transition:transform .12s;width:100%}
+.btn:active{transform:scale(.97)}
+.btn.pri{background:linear-gradient(135deg,var(--rose),var(--wine));color:#fff;box-shadow:0 8px 24px rgba(255,61,110,.35)}
+.btn.sec{background:var(--card);color:var(--muted);border:1px solid var(--line);margin-top:10px}
+.btn.wa{background:#1f9d55;color:#fff;margin-top:10px;display:flex;gap:8px;justify-content:center;align-items:center}
+.btn.wa svg{width:20px;height:20px}
+.spacer{flex:1}
+
+/* final */
+.final{text-align:center}
+.final h2{margin-top:14px}
+.plan{text-align:left;margin:22px 0 20px;background:linear-gradient(160deg,#3a0f25,#1c0712);border:1px solid var(--line);border-radius:26px;padding:8px 18px;position:relative;overflow:hidden}
+.plan::before{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,61,110,.28),transparent 70%)}
+.row{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px dashed var(--line);position:relative}
+.row:last-child{border:0}
+.row svg{flex:0 0 36px;width:36px;height:36px}
+.row small{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.row span{font-size:15px;line-height:1.35}
+.note{text-align:left;margin-bottom:18px}
+.note label{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 4px 8px}
+.note textarea{width:100%;background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:18px;padding:14px;font:inherit;font-size:16px;line-height:1.45;resize:vertical}
+.note textarea:focus{outline:none;border-color:var(--rose);box-shadow:0 0 0 3px rgba(255,61,110,.2)}
+.note textarea::placeholder{color:#8a5a6c}
+.sig{font-family:"Playfair Display";font-style:italic;color:var(--muted);font-size:17px;margin-bottom:18px}
+</style>
+</head>
+<body>
+
+<svg class="bg-art" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ff3d6e" stop-opacity="0"/><stop offset=".5" stop-color="#ff3d6e" stop-opacity=".5"/><stop offset="1" stop-color="#f2b880" stop-opacity="0"/></linearGradient></defs>
+  <path d="M-20 180 C80 120 120 260 210 220 S330 120 420 190" fill="none" stroke="url(#g1)" stroke-width="1.2"/>
+  <path d="M-20 520 C60 440 160 600 230 540 S350 420 420 500" fill="none" stroke="url(#g1)" stroke-width="1.2"/>
+  <path d="M-10 700 C100 640 140 780 260 720 S360 660 420 700" fill="none" stroke="url(#g1)"/>
+  <path d="M60 0 C20 140 140 260 90 400 S30 640 110 800" fill="none" stroke="#f2b880" stroke-opacity=".12"/>
+  <path d="M340 0 C380 160 260 280 320 420 S380 660 300 800" fill="none" stroke="#ff3d6e" stroke-opacity=".14"/>
+</svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="ig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5c86"/><stop offset="1" stop-color="#a3123f"/></linearGradient>
+  <linearGradient id="ig2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2b880"/><stop offset="1" stop-color="#ff3d6e"/></linearGradient>
+</defs></svg>
+
+<main>
+  <section class="screen intro on" id="sIntro">
+    <div class="hero" id="heroIcon"></div>
+    <div class="kicker">Debora &amp; Hugo · aniversário de namoro</div>
+    <h1>Debora, a nossa noite é sua escolha</h1>
+    <p class="lead">O Hugo comprou presentes que estão esperando por você.<br>Responda <b>4 perguntas</b> e eu cuido do resto.</p>
+    <button class="btn pri" id="startBtn">Começar ♥</button>
+  </section>
+
+  <section class="screen" id="sQ">
+    <div class="top">
+      <button class="iconbtn" id="backBtn" aria-label="Voltar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="prog" id="prog"></div>
+      <div class="iconbtn hide"></div>
+    </div>
+    <div class="qnum" id="qNum"></div>
+    <h2 id="qTitle"></h2>
+    <p class="qsub" id="qSub"></p>
+    <div id="opts"></div>
+    <div class="spacer"></div>
+  </section>
+
+  <section class="screen final" id="sEnd">
+    <div class="hero" id="endIcon" style="margin-top:6px"></div>
+    <h2>Combinado.</h2>
+    <p class="qsub" style="margin:0">Esse é o plano da nossa noite:</p>
+    <div class="plan" id="plan"></div>
+    <div class="note">
+      <label for="note">Quer sugerir mais alguma coisa?</label>
+      <textarea id="note" rows="4" placeholder="Escreve aqui o que mais você quer hoje, Debora…"></textarea>
+    </div>
+    <p class="sig">Agora é comigo. Feliz aniversário, amor.<br>— Hugo</p>
+    <button class="btn wa" id="waBtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg>Enviar minhas escolhas</button>
+    <button class="btn sec" id="redoBtn">Mudar respostas</button>
+  </section>
+</main>
+
+<script>
+const G='url(#ig)', G2='url(#ig2)';
+const ICONS={
+  lips:`<svg viewBox="0 0 64 64"><path fill="${G}" d="M4 32C12 20 22 17 27 21c2 1 4 3 5 5 1-2 3-4 5-5 5-4 15-1 23 11-8 2-18 2-28 2S12 34 4 32z"/><path fill="${G}" d="M4 33c8 2 18 3 28 3s20-1 28-3c-6 12-16 18-28 18S10 45 4 33z"/><path d="M14 40c6 4 12 5 18 5" stroke="#fff" stroke-opacity=".35" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`,
+  lingerie:`<svg viewBox="0 0 64 64"><path fill="${G}" d="M6 16h52l-3 7c-10 3-17 11-19 25h-8C26 34 19 26 9 23z"/><path d="M6 16q3 4 6.5 0t6.5 0 6.5 0 6.5 0 6.5 0 6.5 0 6.5 0 6.5 0" stroke="#f2b880" stroke-width="2" fill="none"/><path d="M32 20c-2 0-3 2-2 3l2 2 2-2c1-1 0-3-2-3z" fill="#fff" fill-opacity=".6"/></svg>`,
+  robe:`<svg viewBox="0 0 64 64"><path fill="${G}" d="M22 6l10 10 10-10 14 10-6 12-4-3v33H18V25l-4 3-6-12z"/><path d="M22 6l10 22 10-22" stroke="#f2b880" stroke-width="2.5" fill="none"/><path d="M18 38h28" stroke="#f2b880" stroke-width="3"/><path d="M32 38l-5 8M32 38l5 8" stroke="#f2b880" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+  nude:`<svg viewBox="0 0 64 64"><path d="M24 4c-2 10 6 14 4 22s-12 12-10 22 10 12 12 12M40 4c2 10-6 14-4 22s12 12 10 22-10 12-12 12" stroke="${G2}" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="26" cy="27" r="2.5" fill="#ff3d6e"/><circle cx="38" cy="27" r="2.5" fill="#ff3d6e"/><path d="M8 14l2 4 4 2-4 2-2 4-2-4-4-2 4-2zM56 40l1.5 3 3 1.5-3 1.5-1.5 3-1.5-3-3-1.5 3-1.5z" fill="#f2b880"/></svg>`,
+  dinner:`<svg viewBox="0 0 64 64"><path fill="${G}" d="M8 44a24 24 0 0 1 48 0z"/><circle cx="32" cy="16" r="4" fill="#f2b880"/><rect x="4" y="44" width="56" height="5" rx="2.5" fill="#f2b880"/><path d="M18 36a14 14 0 0 1 10-12" stroke="#fff" stroke-opacity=".4" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M26 56c2-3 4-3 6 0s4 3 6 0" stroke="#ff3d6e" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`,
+  wine:`<svg viewBox="0 0 64 64"><g transform="rotate(-14 20 32)"><path d="M10 6h20c0 14-4 20-10 20S10 20 10 6z" fill="${G}"/><path d="M20 26v22M12 50h16" stroke="#f2b880" stroke-width="3" stroke-linecap="round"/></g><g transform="rotate(14 44 32)"><path d="M34 6h20c0 14-4 20-10 20S34 20 34 6z" fill="${G}"/><path d="M44 26v22M36 50h16" stroke="#f2b880" stroke-width="3" stroke-linecap="round"/></g><path d="M32 2v6M26 4l2 4M38 4l-2 4" stroke="#f2b880" stroke-width="2" stroke-linecap="round"/></svg>`,
+  mask:`<svg viewBox="0 0 64 64"><path fill="${G}" d="M4 24c8-4 18-2 28 4 10-6 20-8 28-4 0 12-6 20-14 20-6 0-10-4-14-8-4 4-8 8-14 8C10 44 4 36 4 24z"/><path fill="#14060b" d="M12 30c3-3 9-3 12 1-3 4-9 4-12-1zM40 31c3-4 9-4 12-1-3 5-9 5-12 1z"/><path d="M60 24c2-8-2-16-8-18M4 24C2 16 6 8 12 6" stroke="#f2b880" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`,
+  remote:`<svg viewBox="0 0 64 64"><rect x="22" y="18" width="20" height="40" rx="10" fill="${G}"/><circle cx="32" cy="30" r="4" fill="#fff" fill-opacity=".7"/><rect x="29" y="40" width="6" height="10" rx="3" fill="#f2b880"/><path d="M20 12a17 17 0 0 1 24 0M14 6a26 26 0 0 1 36 0" stroke="#f2b880" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`,
+  dress:`<svg viewBox="0 0 64 64"><path fill="${G}" d="M24 4h4l4 8 4-8h4l-2 16 4 6c6 10 10 20 12 34H8c2-14 6-24 12-34l4-6z"/><path d="M22 24h20" stroke="#f2b880" stroke-width="3"/><path d="M14 52c6-8 10-18 12-26M38 26c2 8 6 18 12 26" stroke="#fff" stroke-opacity=".2" stroke-width="2" fill="none"/><path d="M52 6c1 4 4 4 6 2M50 14c2 2 5 1 6-1" stroke="#c79aab" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>`,
+  gift:`<svg viewBox="0 0 64 64"><rect x="8" y="24" width="48" height="12" rx="3" fill="${G}"/><rect x="12" y="36" width="40" height="22" rx="3" fill="${G}"/><path d="M32 24v34" stroke="#f2b880" stroke-width="5"/><path d="M32 24c-4-10-16-12-16-4s12 4 16 4zM32 24c4-10 16-12 16-4s-12 4-16 4z" fill="none" stroke="#f2b880" stroke-width="3.5"/></svg>`,
+  heart:`<svg viewBox="0 0 64 64"><path fill="${G}" d="M32 56 9 33A13 13 0 0 1 32 15a13 13 0 0 1 23 18z"/><path d="M17 24a7 7 0 0 1 8-4" stroke="#fff" stroke-opacity=".4" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`,
+  flame:`<svg viewBox="0 0 64 64"><path fill="${G2}" d="M32 3c4 12 17 19 17 36a17 17 0 0 1-34 0c0-10 6-15 8-23 4 6 4 12 8 14 2-8-2-16 1-27z"/><path fill="#fff" fill-opacity=".35" d="M32 34c3 4 7 7 7 12a7 7 0 0 1-14 0c0-4 3-6 4-10 1 2 2 3 3 4z"/></svg>`,
+  cherry:`<svg viewBox="0 0 64 64"><path d="M22 40C26 24 34 12 46 6M42 42C42 28 44 16 46 6" stroke="#f2b880" stroke-width="3" fill="none" stroke-linecap="round"/><path fill="#f2b880" d="M46 6c6-2 12 0 14 4-6 2-11 1-14-4z"/><circle cx="20" cy="46" r="12" fill="${G}"/><circle cx="43" cy="48" r="12" fill="${G}"/><circle cx="15" cy="42" r="3" fill="#fff" fill-opacity=".4"/><circle cx="38" cy="44" r="3" fill="#fff" fill-opacity=".4"/></svg>`,
+};
+const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>';
+
+/* ---------- perguntas ---------- */
+const Q={
+  roupa:{label:'Como vai me esperar', title:'Como você quer me esperar?', sub:'Os presentes que o Hugo comprou já estão com você…', icon:'lingerie', opts:[
+    {id:'lingerie', i:'lingerie', t:'Com a lingerie sexy', d:'Aquela que eu comprei pra você.'},
+    {id:'robe', i:'robe', t:'Robe sexy + lingerie', d:'Pra eu ir abrindo devagar.'},
+    {id:'nua', i:'nude', t:'Nua', d:'Sem nada no caminho.'},
+  ]},
+  onde:{label:'Onde vamos', title:'Onde vai ser a nossa noite?', sub:'Escolha o cenário.', icon:'wine', opts:[
+    {id:'casa', i:'dinner', t:'Jantar em casa', d:'Pedimos um jantar e fodemos gostoso em casa.'},
+    {id:'restaurante', i:'wine', t:'Sair para um restaurante', d:'Um jantar a dois, só nós.'},
+    {id:'swing', i:'mask', t:'Casa de swing', d:'Uma noite diferente, juntos.'},
+  ]},
+  fora:{label:'Os brinquedinhos', title:'E os brinquedinhos?', sub:'Já que vamos sair de casa…', icon:'remote', opts:[
+    {id:'plug', i:'remote', t:'Lingerie + plug na calcinha', d:'Uma das lingeries que comprei, com um plug que eu vou controlar.'},
+    {id:'vestido', i:'dress', t:'Vestido sem calcinha', d:'Só o vestido. Esquece o frio.'},
+  ]},
+  dentro:{label:'Os brinquedinhos', title:'E os brinquedinhos?', sub:'Já que vamos ficar em casa…', only:true, icon:'gift', opts:[
+    {id:'todos', i:'gift', t:'Vamos testar todos', d:'Todos os brinquedinhos que compramos. Um por um.'},
+  ]},
+  vibe:{label:'A vibe', title:'Qual é a sua vibe hoje?', sub:'Última pergunta. Seja sincera.', icon:'flame', opts:[
+    {id:'amor', i:'heart', t:'Amorzinho gostoso', d:'Aconchegante, devagar, cheio de carinho.'},
+    {id:'putinha', i:'flame', t:'Foder igual uma putinha', d:'Sem pudor nenhum.'},
+    {id:'tudo', i:'cherry', t:'Quero tudo', d:'Chupada, brinquedinho e uma foda gostosa depois.'},
+  ]},
+};
+const steps=()=>['roupa','onde',(A.onde==='casa'?'dentro':'fora'),'vibe'];
+
+/* ---------- estado ---------- */
+const KEY='nossaNoite_v1';
+let A={}, step=0;
+try{A=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(A))}catch(e){}};
+const $=id=>document.getElementById(id);
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));window.scrollTo(0,0)}
+
+function renderQ(){
+  const key=steps()[step], q=Q[key];
+  $('prog').innerHTML=[0,1,2,3].map(i=>`<i class="${i<=step?'f':''}"></i>`).join('');
+  $('qNum').textContent=`pergunta ${step+1} de 4`;
+  $('qTitle').textContent=q.title;
+  $('qSub').textContent=q.sub;
+  if(q.only){
+    const o=q.opts[0];
+    $('opts').innerHTML=`<div class="only">${ICONS[o.i]}<h3>${o.t}</h3><p>${o.d}</p></div><button class="btn pri" id="onlyBtn">Fechado ♥</button>`;
+    $('onlyBtn').onclick=()=>pick(key,o.id);
+  }else{
+    $('opts').innerHTML=q.opts.map(o=>`
+      <button class="opt ${A[key]===o.id?'sel':''}" data-id="${o.id}">
+        <div class="ic">${ICONS[o.i]}</div>
+        <div><h3>${o.t}</h3><p>${o.d}</p></div>
+        <div class="chk">${CHECK}</div>
+      </button>`).join('');
+    document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+      document.querySelectorAll('.opt').forEach(x=>x.classList.toggle('sel',x===b));
+      try{navigator.vibrate&&navigator.vibrate(25)}catch(e){}
+      setTimeout(()=>pick(key,b.dataset.id),420);
+    });
+  }
+  show('sQ');
+}
+function pick(key,id){
+  A[key]=id;
+  if(key==='onde'){ if(id==='casa') delete A.fora; else delete A.dentro; }
+  save();
+  if(step<3){step++;renderQ()} else renderEnd();
+}
+function chosen(key){const q=Q[key];return q.opts.find(o=>o.id===A[key])}
+
+function renderEnd(){
+  $('endIcon').innerHTML=ICONS.lips;
+  $('note').value=A.note||'';
+  const ks=steps();
+  $('plan').innerHTML=ks.map(k=>{const o=chosen(k);return `<div class="row">${ICONS[o.i]}<div><small>${Q[k].label}</small><span>${o.t}${o.id==='casa'||o.id==='plug'||o.id==='tudo'?' — '+o.d.charAt(0).toLowerCase()+o.d.slice(1):''}</span></div></div>`}).join('');
+  show('sEnd');
+}
+$('waBtn').onclick=()=>{
+  const n=$('note').value.trim();
+  const txt='Hugo, minhas escolhas para a nossa noite:\n\n'+steps().map(k=>`• ${Q[k].label}: ${chosen(k).t}`).join('\n')+(n?`\n\nE mais: ${n}`:'')+'\n\nTe espero ♥ Debora';
+  window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank');
+};
+$('note').addEventListener('input',e=>{A.note=e.target.value;save()});
+$('redoBtn').onclick=()=>{step=0;renderQ()};
+$('startBtn').onclick=()=>{step=0;renderQ()};
+$('backBtn').onclick=()=>{if(step===0)show('sIntro');else{step--;renderQ()}};
+
+$('heroIcon').innerHTML=ICONS.gift;
+
+/* partículas */
+['lips','heart','cherry','flame','lingerie','heart','lips','cherry'].forEach((k,i)=>{
+  const el=document.createElement('div');el.className='float';
+  const sz=18+Math.random()*26;
+  el.style.cssText=`left:${Math.random()*95}vw;width:${sz}px;height:${sz}px;animation-duration:${14+Math.random()*16}s;animation-delay:-${Math.random()*20}s`;
+  el.innerHTML=ICONS[k];el.firstChild.style.cssText='width:100%;height:100%';
+  document.body.appendChild(el);
+});
+</script>
+</body>
+</html>
